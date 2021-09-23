@@ -1,0 +1,24 @@
+{
+  "build": {
+    "dockerfile": "./Dockerfile",
+    "context": ".."
+  },
+  "containerUser": "dev",
+  "extensions": [
+    "BazelBuild.vscode-bazel",
+    "bufbuild.vscode-buf",
+    "googlecloudtools.cloudcode",
+    "mathiasfrohlich.Kotlin",
+    "VisualStudioExptTeam.vscodeintellicode",
+    "zhengrenzhe.nyan-cat",
+    "zxh404.vscode-proto3",
+    "StackBuild.bazel-stack-vscode",
+    "vscjava.vscode-java-debug",
+    "vscjava.vscode-java-dependency",
+    "vscjava.vscode-java-pack",
+    "vscjava.vscode-java-test",
+    "vscjava.vscode-maven",
+    "redhat.vscode-xml",
+    "esbenp.prettier-vscode"
+  ]
+}
