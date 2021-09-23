@@ -43,8 +43,31 @@ http_archive(
 )
 
 http_archive(
+    name = "io_grpc_proto",
+    sha256 = "f081eba5884bf09051d27664aede4fc22bbaa77da477735d745bcef17bd088f1",
+    strip_prefix = "grpc-proto-ec886024c2f7b7f597ba89d5b7d60c3f94627b17",
+    urls = ["https://github.com/grpc/grpc-proto/archive/ec886024c2f7b7f597ba89d5b7d60c3f94627b17.tar.gz"],
+)
+
+http_archive(
     name = "io_grpc_java",
     sha256 = "85927f857e0b3ad5c4e51c2e6d29213d3e0319f20784aa2113552f71311ba74c",
     strip_prefix = "grpc-java-%s" % GRPC_VERSION,
     urls = ["https://github.com/grpc/grpc-java/archive/v%s.tar.gz" % GRPC_VERSION],
 )
+
+http_archive(
+    name = "bazel_toolchains",
+    sha256 = "5b6eef36e1f627bf739d3212487c7c31e9f19ce68bcb4d672aa11be1bd6bd2ee",
+    strip_prefix = "bazel-toolchains-5.1.0",
+    urls = [
+        "https://github.com/bazelbuild/bazel-toolchains/archive/refs/tags/v5.1.0.tar.gz",
+    ],
+)
+
+load(
+    "@com_google_protobuf//:protobuf_deps.bzl",
+    "protobuf_deps",
+)
+
+protobuf_deps()

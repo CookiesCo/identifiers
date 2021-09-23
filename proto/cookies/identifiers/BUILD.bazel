@@ -1,0 +1,31 @@
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+
+proto_library(
+    name = "meta_proto",
+    srcs = ["meta.proto"],
+)
+
+
+proto_library(
+    name = "ctin_proto",
+    srcs = ["ctin.proto"],
+    deps = [":meta_proto"],
+)
+
+
+proto_library(
+    name = "all",
+    exports = [
+        ":meta_proto",
+        ":ctin_proto",
+    ]
+)
+
+alias(
+    name = "identifiers",
+    actual = "all",
+)

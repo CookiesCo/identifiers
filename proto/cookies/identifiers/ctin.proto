@@ -1,0 +1,42 @@
+
+/**
+ * Specifies a definition, and documentation, for a _Cookies Trade Item Number_ identifier, also known as a _CTIN_. CTINs are
+ * issued for every final good Cookies creates or sells.
+ */
+
+syntax = "proto3";
+
+package cookies.identifiers;
+
+option optimize_for = SPEED;
+option java_generate_equals_and_hash = true;
+option java_multiple_files = false;
+option java_outer_classname = "CTIN";
+option java_package = "co.cookies.schema.identifiers";
+option java_string_check_utf8 = true;
+
+import "cookies/identifiers/meta.proto";
+
+
+// Defines the structure of a _Cookies Trade Item Number_, abbreviated as a CTIN. In past lives, this identifier was also known as
+// the _Cookies Distribution ID_. Every final good produced by Cookies has a CTIN assigned by the Operations department. CTINs are
+// used throughout the system to reference single final goods.
+//
+// CTINs are formatted like: `C123456`. They can specify between `6` and `9` numeric digits after the letter `C`, which is always
+// present in the identifier to (1) prevent software from trimming leading `0` characters, and (2) make CTIN values visually
+// recognizable by warehouse staff and other supply chain actors.
+message CTIN {
+    option (cookies.identifiers).identifier = {
+        prefix: "C";
+        limit { range { min: 100000; max: 999999999; } };
+        characters { range { min: 7; max: 10; } };
+    }
+
+    // Specifies an exact numeric value generated for this CTIN. The numeric value for a CTIN is allocated from an ordinal row
+    // number in a Smartsheet maintained by the Operations department. Because CTINs monotonically increment for each new product,
+    // they roughly describe when a product was created, in relation to all other products.
+    //
+    // Other than described above, CTINs do not typically relate to one another in any reliable meaningful way (an intentional
+    // design choice).
+    ExactNumericValue id_number = 1;
+}

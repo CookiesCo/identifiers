@@ -1,0 +1,61 @@
+
+syntax = "proto3";
+
+package cookies.identifiers;
+
+option optimize_for = SPEED;
+option java_generate_equals_and_hash = true;
+option java_multiple_files = false;
+option java_outer_classname = "CTIN";
+option java_package = "co.cookies.schema.identifiers";
+option java_string_check_utf8 = true;
+
+
+// Simple structure for specifying a range of values.
+message NumericRange {
+    // Specifies the minimum value for this range.
+    uint32 min = 1;
+
+    // Specifies the maximum value for this range.
+    uint32 max = 2;
+}
+
+
+// Specifies an exact numeric value.
+message ExactNumericValue {
+    // Exact integer value.
+    uint64 value = 1;
+}
+
+
+// Specifies a contraint against a particular aspect of an identifier.
+message NumericAspectConstraint {
+    oneof constraint {
+        // Specifies a range-based constraint.
+        NumericRange range = 1;
+
+        // Specifies an exact constraint value.
+        ExactNumericValue exact = 2;
+    }
+}
+
+
+// Defines model-level annotations which can be affixed, or specified, on a given identifier definition
+// expressed in Protocol Buffers.
+message IdentifierModel {
+    // Specifies a static prefix which is expressed in every identifier conforming to this model.
+    string prefix = 1;
+
+    // Value limits for the identifier defined by a particular model.
+    NumericAspectConstraint limit = 2;
+
+    // Character sizing limits for the identifier defined by a particular model.
+    NumericAspectConstraint characters = 3;
+}
+
+
+// Message-level options relating to identifier definitions.
+extend google.protobuf.MessageOptions {
+    // Specifies details relating to the formatting of an identifier specified by this model.
+    IdentifierModel identifier = 42005;
+}
