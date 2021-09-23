@@ -1,0 +1,50 @@
+
+workspace(
+    name = "identifiers",
+)
+
+load(
+    "@bazel_tools//tools/build_defs/repo:http.bzl",
+    "http_archive",
+    "http_file",
+)
+
+load(
+    "@bazel_tools//tools/build_defs/repo:git.bzl",
+    "git_repository",
+)
+
+load(
+    "//tools:config.bzl",
+    "PROTOBUF_VERSION",
+    "GRPC_VERSION",
+)
+
+
+http_archive(
+    name = "com_google_protobuf",
+    sha256 = "c6003e1d2e7fefa78a3039f19f383b4f3a61e81be8c19356f85b6461998ad3db",
+    strip_prefix = "protobuf-%s" % PROTOBUF_VERSION,
+    urls = ["https://github.com/protocolbuffers/protobuf/archive/v%s.tar.gz" % PROTOBUF_VERSION],
+)
+
+http_archive(
+    name = "com_google_googleapis",
+    sha256 = "0424d63c6718183a06f0219e09de7d400a2bd5ca570e1822be4f73f59f9b5a56",
+    strip_prefix = "googleapis-882e6d69a30e4bde445dd33c710f1235b81270c7",
+    urls = ["https://github.com/googleapis/googleapis/archive/882e6d69a30e4bde445dd33c710f1235b81270c7.tar.gz"],
+)
+
+http_archive(
+    name = "com_github_grpc_grpc",
+    strip_prefix = "grpc-%s" % GRPC_VERSION,
+    sha256 = "df488fc6ecdc51bfa026fedb552f23b7cd31ce87d4aa38f676d814903f240062",
+    urls = ["https://github.com/grpc/grpc/archive/v%s.zip" % GRPC_VERSION],
+)
+
+http_archive(
+    name = "io_grpc_java",
+    sha256 = "85927f857e0b3ad5c4e51c2e6d29213d3e0319f20784aa2113552f71311ba74c",
+    strip_prefix = "grpc-java-%s" % GRPC_VERSION,
+    urls = ["https://github.com/grpc/grpc-java/archive/v%s.tar.gz" % GRPC_VERSION],
+)

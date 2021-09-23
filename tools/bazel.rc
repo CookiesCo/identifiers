@@ -1,0 +1,35 @@
+
+# bazelrc file
+# bazel >= 0.18 looks for %workspace%/.bazelrc (which redirects here)
+# Older bazel versions look for %workspace%/tools/bazel.rc (this file)
+# See https://github.com/bazelbuild/bazel/issues/6319
+
+
+##
+# Base Settings
+##
+
+info --java_toolchain=@bazel_tools//tools/jdk:toolchain_java11
+info --host_java_toolchain=@bazel_tools//tools/jdk:toolchain_java11
+
+build --show_timestamps
+build --strategy=sandboxed
+build --worker_sandboxing
+build --experimental_ui_mode=oldest_actions
+
+build --java_language_version=11
+build --tool_java_language_version=11
+build --java_runtime_version=remotejdk_11
+build --tool_java_runtime_version=remotejdk_11
+
+build --symlink_prefix=dist/
+build --nolegacy_external_runfiles
+build --javacopt="-encoding UTF-8"
+build --strict_java_deps=strict
+build --use_ijars
+build --interface_shared_objects
+build --incompatible_strict_action_env
+build --java_toolchain=@bazel_tools//tools/jdk:toolchain_java11
+build --host_java_toolchain=@bazel_tools//tools/jdk:toolchain_java11
+build --incompatible_run_shell_command_string=false
+build --strict_proto_deps=strict

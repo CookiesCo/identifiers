@@ -1,0 +1,7 @@
+dist/
+bazel-*/
+bazel-*
+bazel-out
+bazel-out/
+node_modules/
+.DS_Store
