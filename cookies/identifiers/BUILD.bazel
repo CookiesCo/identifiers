@@ -9,10 +9,15 @@ proto_library(
     srcs = ["meta.proto"],
 )
 
-
 proto_library(
     name = "ctin_proto",
     srcs = ["ctin.proto"],
+    deps = [":meta_proto"],
+)
+
+proto_library(
+    name = "iid_proto",
+    srcs = ["iid.proto"],
     deps = [":meta_proto"],
 )
 
@@ -22,6 +27,7 @@ proto_library(
     exports = [
         ":meta_proto",
         ":ctin_proto",
+        ":iid_proto",
     ]
 )
 

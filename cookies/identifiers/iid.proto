@@ -1,0 +1,48 @@
+
+/**
+ * Specifies a definition, and documentation, for a _Cookies Intacct Identifier_, also known as an _IID_ or an _Intacct Item
+ * ID_. IIDs are issued for every item tracked or recognized by Cookies' ERP system, Sage Intacct. This includes final goods,
+ * packaging items, raw materials, and so forth.
+ */
+
+ syntax = "proto3";
+
+ package cookies.identifiers;
+ 
+ option optimize_for = SPEED;
+ option java_generate_equals_and_hash = true;
+ option java_multiple_files = false;
+ option java_outer_classname = "CIID";
+ option java_package = "co.cookies.schema.identifiers";
+ option java_string_check_utf8 = true;
+ 
+ import "cookies/identifiers/meta.proto";
+ 
+ 
+ // Defines the structure of a _Cookies Intacct Identifier_, abbreviated as an "IID," and known as an "Intacct Item ID" in
+ // shorthand. Every final good, packaging item, and raw material touched by Cookies is issued an IID, which serves as the
+ // primary item record key in Intacct.
+ //
+ // IIDs are issued in Salsify and imported into Intacct with mutual import/export mechanism. They are composed of a single
+ // character ("G"), followed by _exactly_ `12` numeric digits between `0` and `9`. The numeric digits express a timestamp
+ // value which has been altered: it is taken at millisecond-resolution relative to the Unix epoch, trimmed to the expected
+ // digit length, converted to a string, and then reversed by character order.
+ //
+ // The resulting identifier looks something like this: `G123456789012`. Because the timestamp is reversed, it no longer
+ // indexes in monotonically increasing order, enhancing write distribution performance downstream for write/read-heavy
+ // tasks like item-level inventory.
+ message IID {
+     option (cookies.identifiers).identifier = {
+         prefix: "G";
+         characters { exact { value: 13; } };
+     }
+ 
+     // Specifies an exact numeric value generated for this CTIN. The numeric value for a CTIN is allocated from an ordinal row
+     // number in a Smartsheet maintained by the Operations department. Because CTINs monotonically increment for each new
+     // product, they roughly describe when a product was created, in relation to all other products.
+     //
+     // Other than described above, CTINs do not typically relate to one another in any reliable meaningful way (an intentional
+     // design choice).
+     ExactNumericValue id_number = 1;
+ }
+ 
