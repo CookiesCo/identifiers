@@ -1,0 +1,10 @@
+*.proto linguist-language=Protocol-Buffer linguist-detectable
+*.soy linguist-language=Closure-Templates linguist-detectable
+*.ts linguist-language=TypeScript linguist-detectable
+*.css linguist-language=CSS linguist-detectable
+*.scss linguist-language=Sass linguist-detectable
+*.bzl linguist-language=Starlark linguist-detectable
+*.build linguist-language=Starlark
+*.owl linguist-language=Web-Ontology-Language
+*.html linguist-language=HTML -linguist-detectable
+tools/externs/* linguist-vendored
