@@ -12,7 +12,7 @@
  option optimize_for = SPEED;
  option java_generate_equals_and_hash = true;
  option java_multiple_files = false;
- option java_outer_classname = "CIID";
+ option java_outer_classname = "CIIDSpec";
  option java_package = "co.cookies.schema.identifiers";
  option java_string_check_utf8 = true;
  
@@ -31,7 +31,7 @@
  // The resulting identifier looks something like this: `G123456789012`. Because the timestamp is reversed, it no longer
  // indexes in monotonically increasing order, enhancing write distribution performance downstream for write/read-heavy
  // tasks like item-level inventory.
- message IID {
+ message CIID {
      option (meta.identifier) = {
          prefix: "G";
          characters { exact { value: 13; } }

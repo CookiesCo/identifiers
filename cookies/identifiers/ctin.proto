@@ -11,7 +11,7 @@ package cookies.identifiers;
 option optimize_for = SPEED;
 option java_generate_equals_and_hash = true;
 option java_multiple_files = false;
-option java_outer_classname = "CTIN";
+option java_outer_classname = "CTINSpec";
 option java_package = "co.cookies.schema.identifiers";
 option java_string_check_utf8 = true;
 
