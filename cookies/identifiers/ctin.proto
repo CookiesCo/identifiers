@@ -15,7 +15,7 @@ option java_outer_classname = "CTIN";
 option java_package = "co.cookies.schema.identifiers";
 option java_string_check_utf8 = true;
 
-import "cookies/identifiers/meta.proto";
+import "cookies/meta/meta.proto";
 
 
 // Defines the structure of a _Cookies Trade Item Number_, abbreviated as a CTIN. In past lives, this identifier was also known as
@@ -26,11 +26,11 @@ import "cookies/identifiers/meta.proto";
 // present in the identifier to (1) prevent software from trimming leading `0` characters, and (2) make CTIN values visually
 // recognizable by warehouse staff and other supply chain actors.
 message CTIN {
-    option (cookies.identifiers).identifier = {
+    option (meta.identifier) = {
         prefix: "C";
         limit { range { min: 100000; max: 999999999; } };
         characters { range { min: 7; max: 10; } };
-    }
+    };
 
     // Specifies an exact numeric value generated for this CTIN. The numeric value for a CTIN is allocated from an ordinal row
     // number in a Smartsheet maintained by the Operations department. Because CTINs monotonically increment for each new product,
@@ -38,5 +38,5 @@ message CTIN {
     //
     // Other than described above, CTINs do not typically relate to one another in any reliable meaningful way (an intentional
     // design choice).
-    ExactNumericValue id_number = 1;
+    meta.ExactNumericValue id_number = 1;
 }

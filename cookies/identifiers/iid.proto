@@ -16,7 +16,7 @@
  option java_package = "co.cookies.schema.identifiers";
  option java_string_check_utf8 = true;
  
- import "cookies/identifiers/meta.proto";
+ import "cookies/meta/meta.proto";
  
  
  // Defines the structure of a _Cookies Intacct Identifier_, abbreviated as an "IID," and known as an "Intacct Item ID" in
@@ -32,10 +32,10 @@
  // indexes in monotonically increasing order, enhancing write distribution performance downstream for write/read-heavy
  // tasks like item-level inventory.
  message IID {
-     option (cookies.identifiers).identifier = {
+     option (meta.identifier) = {
          prefix: "G";
-         characters { exact { value: 13; } };
-     }
+         characters { exact { value: 13; } }
+     };
  
      // Specifies an exact numeric value generated for this CTIN. The numeric value for a CTIN is allocated from an ordinal row
      // number in a Smartsheet maintained by the Operations department. Because CTINs monotonically increment for each new
@@ -43,6 +43,6 @@
      //
      // Other than described above, CTINs do not typically relate to one another in any reliable meaningful way (an intentional
      // design choice).
-     ExactNumericValue id_number = 1;
+     meta.ExactNumericValue id_number = 1;
  }
  
