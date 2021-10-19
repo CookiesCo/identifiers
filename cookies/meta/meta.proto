@@ -9,6 +9,7 @@ option java_multiple_files = false;
 option java_outer_classname = "IdentifierMeta";
 option java_package = "co.cookies.schema.meta";
 option java_string_check_utf8 = true;
+option go_package = "github.com/CookiesCo/identifiers/cookies/meta";
 
 import "google/protobuf/descriptor.proto";
 
