@@ -1,4 +1,4 @@
-FROM us-docker.pkg.dev/cookies-eng/public/base/codespaces:v1j
+FROM us-docker.pkg.dev/cookies-eng/public/base/codespaces:v1k
 
 ENV SHELL=zsh \
     HOME=/home/dev \
